@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 
+import com.example.factasynctask.Utils.MathUtils;
+
 import java.lang.ref.WeakReference;
 
 public class FragmentAsyncTask extends Fragment {
@@ -18,6 +20,7 @@ public class FragmentAsyncTask extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
+        callback = (TaskCallbacks) context;
     }
 
     @Override
@@ -29,6 +32,7 @@ public class FragmentAsyncTask extends Fragment {
     @Override
     public void onDetach() {
         super.onDetach();
+        callback = null;
     }
 
     private static class MyAsyncTask extends AsyncTask<Integer, Void, Integer> {
@@ -46,11 +50,7 @@ public class FragmentAsyncTask extends Fragment {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            int fact = 1;
-            for (int count = integers[0]; count > 1; count--) {
-                fact = fact * count;
-            }
-            return fact;
+            return MathUtils.calculateFactorial(integers[0]);
         }
 
         @Override
