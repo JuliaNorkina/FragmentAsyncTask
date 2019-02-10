@@ -1,11 +1,14 @@
 package com.example.factasynctask;
 
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, FragmentAsyncTask.TaskCallbacks {
 
@@ -36,7 +39,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
+        List<Fragment> fragments = getSupportFragmentManager().getFragments();
 
+        for (Fragment fragment: fragments) {
+            if(fragment instanceof Task){
+                ((Task) fragment).run(Integer.parseInt(etNumber.getText().toString()));
+            }
+        }
     }
 
     public void onPostExecute(Integer integer) {
