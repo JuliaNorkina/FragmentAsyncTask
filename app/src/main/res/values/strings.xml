@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">FactAsyncTask</string>
+    <string name="Calculate">Calculate</string>
 </resources>
