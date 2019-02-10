@@ -41,8 +41,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         List<Fragment> fragments = getSupportFragmentManager().getFragments();
 
-        for (Fragment fragment: fragments) {
-            if(fragment instanceof Task){
+        for (Fragment fragment : fragments) {
+            if (fragment instanceof Task) {
                 ((Task) fragment).run(Integer.parseInt(etNumber.getText().toString()));
             }
         }

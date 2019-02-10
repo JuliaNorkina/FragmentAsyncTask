@@ -1,7 +1,8 @@
 package com.example.factasynctask.Utils;
 
 public final class MathUtils {
-    private MathUtils() { }
+    private MathUtils() {
+    }
 
     public static int calculateFactorial(int number) {
         int fact = 1;
