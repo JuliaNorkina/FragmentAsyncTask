@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, FragmentAsyncTask.TaskCallbacks {
 
     private static final String TAG_TASK_FRAGMENT = "task_fragment";
     private EditText etNumber;
@@ -37,5 +37,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
 
+    }
+
+    public void onPostExecute(Integer integer) {
+        tvResult.setText(String.valueOf(integer));
+        removeFragment();
+    }
+
+    private void removeFragment() {
+        if (mTaskFragment != null) {
+            fm.beginTransaction()
+                    .remove(mTaskFragment)
+                    .commit();
+        }
     }
 }
