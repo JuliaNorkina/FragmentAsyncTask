@@ -10,8 +10,14 @@ import com.example.factasynctask.Utils.MathUtils;
 
 import java.lang.ref.WeakReference;
 
-public class FragmentAsyncTask extends Fragment {
+public class FragmentAsyncTask extends Fragment implements Task {
     private TaskCallbacks callback;
+
+    @Override
+    public void run(int value) {
+        MyAsyncTask mTask = new MyAsyncTask(this);
+        mTask.execute(value);
+    }
 
     public interface TaskCallbacks {
         void onPostExecute(Integer integer);
